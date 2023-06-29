@@ -22,7 +22,7 @@ public class EmployeeController {
         return employeeService.getEmployee(id);
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public String updateEmployee(@PathVariable Integer id, @RequestBody Employee employee){
         return employeeService.updateEmployee(id, employee);
     }

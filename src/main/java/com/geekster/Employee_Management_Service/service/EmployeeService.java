@@ -27,6 +27,7 @@ public class EmployeeService {
     @Transactional
     public String updateEmployee(Integer id, Employee employee) {
         Employee oldInfo = employeeRepo.findById(id).get();
+        if(oldInfo == null) return "Employee is not present in Database";
         employee.setRole(oldInfo.getRole());
         employee.setSalary(oldInfo.getSalary());
 

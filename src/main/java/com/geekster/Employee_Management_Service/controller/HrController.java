@@ -30,9 +30,9 @@ public class HrController {
         return hrService.getAllEmployee();
     }
 
-    @PutMapping
-    public String updateHr(@RequestBody HR hr){
-        return hrService.updateHr(hr);
+    @PutMapping("/{id}")
+    public String updateHr(@PathVariable Integer id, @RequestBody HR hr){
+        return hrService.updateHr(id, hr);
     }
 
     @PutMapping("/employee/{id}/{salary}/{role}")

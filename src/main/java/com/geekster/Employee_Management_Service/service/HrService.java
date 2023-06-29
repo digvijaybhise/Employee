@@ -4,6 +4,7 @@ import com.geekster.Employee_Management_Service.model.Employee;
 import com.geekster.Employee_Management_Service.model.HR;
 import com.geekster.Employee_Management_Service.repository.EmployeeRepo;
 import com.geekster.Employee_Management_Service.repository.HrRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,11 +28,14 @@ public class HrService {
         return "HR saved successfully..!!!";
     }
 
-    public String updateHr(HR hr) {
+    @Transactional
+    public String updateHr(Integer id, HR hr) {
+        if(!hrRepo.existsById(id)) return "HR is not present in Database.";
         hrRepo.save(hr);
         return "HR updated successfully..!!!";
     }
 
+    @Transactional
     public String updateEmployee(Integer id, Integer salary, String role) {
         Employee employee = employeeRepo.findById(id).get();
         employee.setSalary(salary);
